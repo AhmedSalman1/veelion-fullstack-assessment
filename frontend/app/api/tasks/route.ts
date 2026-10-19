@@ -8,7 +8,7 @@ export async function GET() {
   } catch (error) {
     return NextResponse.json(
       { error: { message: error instanceof Error ? error.message : "Unable to fetch tasks." } },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

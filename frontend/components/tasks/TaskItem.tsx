@@ -16,7 +16,14 @@ export function TaskItem({ task, busy, onToggle }: TaskItemProps) {
         gap: "0.4rem",
       }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between", gap: "0.8rem", alignItems: "start" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          gap: "0.8rem",
+          alignItems: "start",
+        }}
+      >
         <p style={{ margin: 0, fontWeight: 600 }}>{task.title}</p>
         <span className="badge">{task.completed ? "Completed" : "Pending"}</span>
       </div>

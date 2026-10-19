@@ -28,7 +28,7 @@ export default function ActivityPage() {
     return items.filter(
       (item) =>
         (item.action || "").toLowerCase().includes(lower) ||
-        (item.info || "").toLowerCase().includes(lower)
+        (item.info || "").toLowerCase().includes(lower),
     );
   }
 
@@ -41,7 +41,7 @@ export default function ActivityPage() {
     return items.filter(
       (item) =>
         (item.action || "").toLowerCase().indexOf(lower) !== -1 ||
-        (item.info || "").toLowerCase().indexOf(lower) !== -1
+        (item.info || "").toLowerCase().indexOf(lower) !== -1,
     );
   }
 
@@ -118,7 +118,10 @@ export default function ActivityPage() {
       <section className="card" style={{ padding: "1rem" }}>
         <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "grid", gap: "0.7rem" }}>
           {forcedList.map((item) => (
-            <li key={item.id} style={{ borderBottom: "1px solid var(--border)", paddingBottom: "0.6rem" }}>
+            <li
+              key={item.id}
+              style={{ borderBottom: "1px solid var(--border)", paddingBottom: "0.6rem" }}
+            >
               <div style={{ fontWeight: 600 }}>{item.action || "(no action)"}</div>
               <div>{item.info || "(no info)"}</div>
               <small style={{ color: "var(--muted)" }}>{formatTimeA(item.when)}</small>

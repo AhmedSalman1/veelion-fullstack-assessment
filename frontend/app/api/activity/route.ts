@@ -7,8 +7,12 @@ export async function GET() {
     return NextResponse.json(logs, { status: 200 });
   } catch (error) {
     return NextResponse.json(
-      { error: { message: error instanceof Error ? error.message : "Unable to fetch activity logs." } },
-      { status: 500 }
+      {
+        error: {
+          message: error instanceof Error ? error.message : "Unable to fetch activity logs.",
+        },
+      },
+      { status: 500 },
     );
   }
 }

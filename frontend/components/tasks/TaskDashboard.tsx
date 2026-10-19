@@ -36,7 +36,10 @@ export function TaskDashboard() {
       ) : null}
 
       {error ? (
-        <section className="card" style={{ padding: "1rem", borderColor: "#e3b4c0", background: "#fff8fa" }}>
+        <section
+          className="card"
+          style={{ padding: "1rem", borderColor: "#e3b4c0", background: "#fff8fa" }}
+        >
           <p style={{ marginTop: 0, marginBottom: "0.75rem", color: "var(--danger)" }}>{error}</p>
           <button type="button" className="button" onClick={fetchTasks}>
             Retry

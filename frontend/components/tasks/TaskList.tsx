@@ -20,7 +20,12 @@ export function TaskList({ tasks, updatingTaskId, onToggle }: TaskListProps) {
     <section aria-label="Task list">
       <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: "0.7rem" }}>
         {tasks.map((task) => (
-          <TaskItem key={task.id} task={task} busy={updatingTaskId === task.id} onToggle={onToggle} />
+          <TaskItem
+            key={task.id}
+            task={task}
+            busy={updatingTaskId === task.id}
+            onToggle={onToggle}
+          />
         ))}
       </ul>
     </section>
