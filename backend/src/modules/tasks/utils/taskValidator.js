@@ -1,5 +1,14 @@
 const HttpError = require('../../../utils/httpError');
 
+/**
+ * Single source of truth for task payload validation.
+ *
+ * Title rule (identical for create and update): when provided,
+ * `title` must be a string; it is trimmed and must then be non-empty.
+ *
+ * `completed`, when provided, must be a boolean. Unknown fields are rejected so
+ * clients cannot set server-owned fields such as `id` or `createdAt`.
+ */
 const ALLOWED_FIELDS = ['title', 'completed'];
 
 function validatePayloadShape(payload) {
@@ -9,9 +18,7 @@ function validatePayloadShape(payload) {
 }
 
 function ensureNoUnknownFields(payload) {
-  const unknownFields = Object.keys(payload).filter(
-    (field) => !ALLOWED_FIELDS.includes(field)
-  );
+  const unknownFields = Object.keys(payload).filter((field) => !ALLOWED_FIELDS.includes(field));
 
   if (unknownFields.length > 0) {
     throw new HttpError(400, 'Body contains unsupported fields.', {
