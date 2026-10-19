@@ -1,57 +1,27 @@
-const fs = require('node:fs');
-
 const config = require('../../../config');
-
-function loadDataA() {
-  const filePath = config.activityFilePath();
-
-  if (!fs.existsSync(filePath)) {
-    fs.writeFileSync(filePath, '[]');
-  }
-
-  let raw = fs.readFileSync(filePath, 'utf8');
-  if (!raw) {
-    raw = '[]';
-  }
-
-  return JSON.parse(raw);
-}
-
-function loadDataB() {
-  const filePath = config.activityFilePath();
-
-  if (!fs.existsSync(filePath)) {
-    fs.writeFileSync(filePath, '[]');
-  }
-
-  let raw = fs.readFileSync(filePath, 'utf8');
-  if (!raw) {
-    raw = '[]';
-  }
-
-  return JSON.parse(raw);
-}
+const { createId } = require('../../../utils/id');
+const { readJsonArray, writeJsonArray } = require('../../../utils/jsonStore');
 
 function getAllActivity() {
-  const arr = loadDataA();
-  return arr;
+  return readJsonArray(config.activityFilePath());
 }
 
-function createNewActivity(b) {
-  const list = loadDataB();
-  const one = {
-    id: String(Date.now()),
-    action: b.action,
-    info: b.info,
+async function createActivity(payload) {
+  const activity = await readJsonArray(config.activityFilePath());
+  const entry = {
+    id: createId(),
+    action: payload.action,
+    info: payload.info,
     when: new Date().toISOString(),
   };
 
-  list.push(one);
-  fs.writeFileSync(config.activityFilePath(), JSON.stringify(list, null, 2));
-  return one;
+  activity.push(entry);
+  await writeJsonArray(config.activityFilePath(), activity);
+
+  return entry;
 }
 
 module.exports = {
   getAllActivity,
-  createNewActivity,
+  createActivity,
 };

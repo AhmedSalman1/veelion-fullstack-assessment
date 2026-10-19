@@ -53,4 +53,36 @@ describe('activity', () => {
 
     expect(list.body.some((entry) => entry.id === created.body.id)).toBe(true);
   });
+
+  it('rejects a non-object body', async () => {
+    const response = await request(app).post('/activity').send([1, 2]);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error.message).toBe('Body must be a JSON object.');
+  });
+
+  it('rejects non-string fields', async () => {
+    const response = await request(app).post('/activity').send({ action: 42 });
+
+    expect(response.status).toBe(400);
+    expect(response.body.error.message).toBe('"action" must be a string.');
+  });
+
+  it('rejects fields longer than the limit', async () => {
+    const longAction = await request(app)
+      .post('/activity')
+      .send({ action: 'a'.repeat(201) });
+    const longInfo = await request(app)
+      .post('/activity')
+      .send({ info: 'i'.repeat(1001) });
+
+    expect(longAction.status).toBe(400);
+    expect(longInfo.status).toBe(400);
+  });
+
+  it('does not write an entry when validation fails', async () => {
+    await request(app).post('/activity').send({ action: 42 });
+
+    expect(readJson(dir, 'activity.json')).toHaveLength(1);
+  });
 });
