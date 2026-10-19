@@ -72,6 +72,39 @@ describe('tasks', () => {
     expect(response.status).toBe(400);
   });
 
+  it('rejects unknown fields on create', async () => {
+    const response = await request(app)
+      .post('/tasks')
+      .send({ title: 'Task', id: 'client-chosen-id', createdAt: 'fake' });
+
+    expect(response.status).toBe(400);
+    expect(response.body.error.details.unsupportedFields).toStrictEqual(['id', 'createdAt']);
+  });
+
+  it('rejects unknown fields on update', async () => {
+    const response = await request(app)
+      .patch('/tasks/task-1')
+      .send({ completed: true, id: 'hijacked', updatedAt: 'fake' });
+
+    expect(response.status).toBe(400);
+    expect(response.body.error.details.unsupportedFields).toStrictEqual(['id', 'updatedAt']);
+    expect(readJson(dir, 'tasks.json')[0].id).toBe('task-1');
+  });
+
+  it('rejects an empty title on update', async () => {
+    const response = await request(app).patch('/tasks/task-1').send({ title: '   ' });
+
+    expect(response.status).toBe(400);
+  });
+
+  it('rejects a non-object body', async () => {
+    const response = await request(app)
+      .post('/tasks')
+      .send([{ title: 'Task' }]);
+
+    expect(response.status).toBe(400);
+  });
+
   it('updates the title and preserves server-owned fields', async () => {
     const response = await request(app).patch('/tasks/task-1').send({ title: '  Renamed  ' });
 
