@@ -91,7 +91,6 @@ export function useTasks() {
   }, [tasks, filter]);
 
   return {
-    tasks,
     filteredTasks,
     filter,
     loading,
