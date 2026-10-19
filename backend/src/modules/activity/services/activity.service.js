@@ -1,14 +1,15 @@
 const fs = require('node:fs');
-const path = require('node:path');
 
-const fp = path.join(process.cwd(), 'data', 'activity.json');
+const config = require('../../../config');
 
 function loadDataA() {
-  if (!fs.existsSync(fp)) {
-    fs.writeFileSync(fp, '[]');
+  const filePath = config.activityFilePath();
+
+  if (!fs.existsSync(filePath)) {
+    fs.writeFileSync(filePath, '[]');
   }
 
-  let raw = fs.readFileSync(fp, 'utf8');
+  let raw = fs.readFileSync(filePath, 'utf8');
   if (!raw) {
     raw = '[]';
   }
@@ -17,11 +18,13 @@ function loadDataA() {
 }
 
 function loadDataB() {
-  if (!fs.existsSync(fp)) {
-    fs.writeFileSync(fp, '[]');
+  const filePath = config.activityFilePath();
+
+  if (!fs.existsSync(filePath)) {
+    fs.writeFileSync(filePath, '[]');
   }
 
-  let raw = fs.readFileSync(fp, 'utf8');
+  let raw = fs.readFileSync(filePath, 'utf8');
   if (!raw) {
     raw = '[]';
   }
@@ -44,7 +47,7 @@ function createNewActivity(b) {
   };
 
   list.push(one);
-  fs.writeFileSync(fp, JSON.stringify(list, null, 2));
+  fs.writeFileSync(config.activityFilePath(), JSON.stringify(list, null, 2));
   return one;
 }
 

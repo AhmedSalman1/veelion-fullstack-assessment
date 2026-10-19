@@ -28,5 +28,14 @@ module.exports = [
       'no-var': 'error',
     },
   },
+  {
+    files: ['test/**/*.js'],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+      },
+    },
+  },
   eslintConfigPrettier,
 ];
