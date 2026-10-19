@@ -18,9 +18,7 @@ async function createTask(req, res) {
   }
 
   if (typeof payload.title !== 'string') {
-    return res
-      .status(400)
-      .json({ error: { message: 'title is required and must be string' } });
+    return res.status(400).json({ error: { message: 'title is required and must be string' } });
   }
 
   payload.title = payload.title.trim();
@@ -56,10 +54,7 @@ async function patchTask(req, res) {
     updates.title = updates.title.trim();
   }
 
-  if (
-    updates.title === undefined &&
-    updates.completed === undefined
-  ) {
+  if (updates.title === undefined && updates.completed === undefined) {
     return res.status(400).json({ error: { message: 'nothing to update' } });
   }
 

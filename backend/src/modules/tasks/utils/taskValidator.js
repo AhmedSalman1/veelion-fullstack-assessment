@@ -9,9 +9,7 @@ function validatePayloadShape(payload) {
 }
 
 function ensureNoUnknownFields(payload) {
-  const unknownFields = Object.keys(payload).filter(
-    (field) => !ALLOWED_FIELDS.includes(field)
-  );
+  const unknownFields = Object.keys(payload).filter((field) => !ALLOWED_FIELDS.includes(field));
 
   if (unknownFields.length > 0) {
     throw new HttpError(400, 'Body contains unsupported fields.', {
