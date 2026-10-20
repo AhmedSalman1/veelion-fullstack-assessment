@@ -302,6 +302,38 @@ p:last-child {
   color: var(--tint-done-ink);
 }
 
+/* ---------- Tasks ---------- */
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.task-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.task-item {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.task-item-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.task-title {
+  margin: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
 /* ---------- Metrics and ledger ---------- */
 
 .metrics {
