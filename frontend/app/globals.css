@@ -461,6 +461,7 @@ p:last-child {
 
 .ledger-track {
   position: relative;
+  display: block;
   height: 0.5rem;
   border-radius: 999px;
   background: var(--chip);
@@ -468,6 +469,7 @@ p:last-child {
 }
 
 .ledger-bar {
+  display: block;
   height: 100%;
   border-radius: 999px;
   background: var(--accent);
@@ -490,6 +492,28 @@ p:last-child {
   text-align: right;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Reports ---------- */
+
+.report-heading h1 {
+  margin: 0 0 0.25rem;
+}
+
+.report-heading p {
+  margin: 0;
+}
+
+.report-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.report-section-head h2 {
+  margin: 0;
 }
 
 /* ---------- Responsive ---------- */
