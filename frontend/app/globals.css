@@ -147,6 +147,7 @@ p:last-child {
 .nav a {
   display: inline-flex;
   align-items: center;
+  gap: 0.4rem;
   min-height: 2.25rem;
   padding: 0.35rem 0.7rem;
   border-radius: 8px;
@@ -172,6 +173,30 @@ p:last-child {
   border: 1px solid var(--rule);
   border-radius: var(--radius);
   padding: 1.25rem;
+}
+
+.home-head {
+  margin-bottom: 1.5rem;
+}
+
+.home-head h1,
+.home-head p {
+  margin: 0;
+}
+
+.card-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.card-link {
+  display: block;
+}
+
+.card-link h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
 }
 
 .muted {
@@ -251,6 +276,12 @@ p:last-child {
 .button:disabled {
   cursor: not-allowed;
   opacity: 0.55;
+}
+
+.icon-button {
+  min-width: 2.4rem;
+  padding: 0.45rem;
+  justify-content: center;
 }
 
 .input {
@@ -444,6 +475,11 @@ p:last-child {
   .nav a {
     min-height: 2.75rem;
     padding: 0.45rem 0.6rem;
+  }
+
+  .icon-button {
+    min-height: 2.75rem;
+    min-width: 2.75rem;
   }
 
   .card {

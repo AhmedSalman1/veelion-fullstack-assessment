@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { ActivityLog } from "@/types/api";
 
@@ -41,8 +42,8 @@ export default function ActivityPage() {
   return (
     <main className="stack">
       <nav>
-        <Link href="/" className="button">
-          Back
+        <Link href="/" className="button icon-button" aria-label="Back to home">
+          <ArrowLeft size={18} aria-hidden="true" />
         </Link>
       </nav>
 
