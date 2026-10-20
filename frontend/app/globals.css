@@ -365,6 +365,45 @@ p:last-child {
   overflow-wrap: anywhere;
 }
 
+/* ---------- Activity ---------- */
+
+.activity-controls {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.activity-counts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.activity-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.activity-item {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.activity-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.activity-action {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
 /* ---------- Metrics and ledger ---------- */
 
 .metrics {
