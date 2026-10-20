@@ -1,9 +1,11 @@
+import { CircleCheck, CircleDashed, Layers } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import type { TaskFilter } from "@/types/api";
 
-const FILTERS: Array<{ label: string; value: TaskFilter }> = [
-  { label: "All", value: "all" },
-  { label: "Completed", value: "completed" },
-  { label: "Pending", value: "pending" },
+const FILTERS: Array<{ label: string; value: TaskFilter; Icon: LucideIcon }> = [
+  { label: "All", value: "all", Icon: Layers },
+  { label: "Completed", value: "completed", Icon: CircleCheck },
+  { label: "Pending", value: "pending", Icon: CircleDashed },
 ];
 
 type StatusFilterProps = {
@@ -13,24 +15,23 @@ type StatusFilterProps = {
 
 export function StatusFilter({ value, onChange }: StatusFilterProps) {
   return (
-    <section aria-label="Filter tasks by status" className="card" style={{ padding: "0.8rem" }}>
-      <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-        {FILTERS.map((filter) => {
-          const active = filter.value === value;
+    <section aria-label="Filter tasks by status" className="card filter-row">
+      {FILTERS.map((filter) => {
+        const active = filter.value === value;
 
-          return (
-            <button
-              key={filter.value}
-              type="button"
-              className={active ? "button primary" : "button"}
-              onClick={() => onChange(filter.value)}
-              aria-pressed={active}
-            >
-              {filter.label}
-            </button>
-          );
-        })}
-      </div>
+        return (
+          <button
+            key={filter.value}
+            type="button"
+            className={active ? "button primary" : "button"}
+            onClick={() => onChange(filter.value)}
+            aria-pressed={active}
+          >
+            <filter.Icon size={16} aria-hidden="true" />
+            {filter.label}
+          </button>
+        );
+      })}
     </section>
   );
 }

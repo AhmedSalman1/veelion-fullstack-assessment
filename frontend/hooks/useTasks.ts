@@ -66,9 +66,7 @@ export function useTasks() {
         body: JSON.stringify({ completed }),
       });
 
-      setTasks((previous) =>
-        previous.map((task) => (task.id === taskId ? body.data : task))
-      );
+      setTasks((previous) => previous.map((task) => (task.id === taskId ? body.data : task)));
     } catch (error) {
       setError(getErrorMessage(error, "Could not update task status."));
     } finally {
@@ -93,7 +91,6 @@ export function useTasks() {
   }, [tasks, filter]);
 
   return {
-    tasks,
     filteredTasks,
     filter,
     loading,

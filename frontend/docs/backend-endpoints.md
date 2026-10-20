@@ -1,6 +1,6 @@
 # Backend API Endpoints
 
-Base URL: `http://localhost:4000`
+Base URL: `http://localhost:3000`
 
 ## Shared Error Shape
 
@@ -43,6 +43,7 @@ type GetTaskResponse = {
 ```
 
 Possible errors:
+
 - `404` when task does not exist.
 
 ### POST /tasks
@@ -61,6 +62,7 @@ type CreateTaskResponse = {
 ```
 
 Possible errors:
+
 - `400` when body is not an object.
 - `400` when title is missing/invalid/empty.
 - `400` when completed is not a boolean.
@@ -81,6 +83,7 @@ type PatchTaskResponse = {
 ```
 
 Possible errors:
+
 - `400` when body is invalid.
 - `400` when no supported fields are provided.
 - `404` when task does not exist.
@@ -94,6 +97,7 @@ type DeleteTaskResponse = void; // status 204
 ```
 
 Possible errors:
+
 - `404` when task does not exist.
 
 ## Activity Endpoints
@@ -127,6 +131,7 @@ type CreateActivityResponse = ActivityLog;
 ```
 
 Notes:
+
 - `action` and `info` are currently not validated by backend.
 - Response shape for activity endpoints is raw objects/arrays (not wrapped in `data`).
 
@@ -151,5 +156,6 @@ type GetTasksSummaryResponse = TasksSummary;
 ```
 
 Notes:
+
 - `in-progress` is currently returned as `0` because task data only includes boolean `completed`.
 - Response shape is raw object.

@@ -14,7 +14,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
     if (typeof payload.completed !== "boolean") {
       return NextResponse.json(
         { error: { message: "completed must be boolean" } },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -23,7 +23,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
   } catch (error) {
     return NextResponse.json(
       { error: { message: error instanceof Error ? error.message : "Unable to update task." } },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
